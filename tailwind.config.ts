@@ -1,7 +1,11 @@
 const config: {
   plugins: never[];
   theme: {
-    extend: { colors: { background: string; foreground: string } };
+    extend: {
+      keyframes: { rainbow: { "100%": { backgroundPosition: string }; "0%": { backgroundPosition: string } } };
+      colors: { background: string; foreground: string };
+      animation: { rainbow: string }
+    };
     screens: { xl: string; "2xl": string; md: string; sm: string; xs: string; lg: string }
   };
   content: string[]
@@ -24,6 +28,15 @@ const config: {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+      },
+      animation: {
+        rainbow: 'rainbow 2s linear infinite',
+      },
+      keyframes: {
+        rainbow: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '100%': { backgroundPosition: '100% 50%' },
+        },
       },
     },
   },

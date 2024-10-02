@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import Button from "@/app/components/Button";
 
 interface Props {
   isOpen: boolean;
@@ -66,12 +67,7 @@ const Modal = ({ isOpen, onClose, onAddItem }: Props) => {
             onChange={(e) => setEmail(e.target.value)}
             className="flex-grow px-4 py-2 border rounded-l-md"
           />
-          <button
-            onClick={handleSendCode}
-            className="bg-gray-700 text-white px-6 py-2 rounded-r-md hover:bg-gray-500"
-          >
-            전송
-          </button>
+          <Button onClick={handleSendCode} mode={"input"}>전송</Button>
         </div>
         <div className="flex mb-6">
           <input
@@ -81,21 +77,11 @@ const Modal = ({ isOpen, onClose, onAddItem }: Props) => {
             onChange={(e) => setVerificationCode(e.target.value)}
             className="flex-grow px-4 py-2 border rounded-l-md"
           />
-          <button
-            onClick={handleVerifyCode}
-            disabled={!isSend}
-            className="bg-gray-700 text-white px-6 py-2 rounded-r-md hover:bg-gray-500 disabled:opacity-30"
-          >
-            인증
-          </button>
+          <Button onClick={handleSendCode} mode={"input"} disableCondition={!isSend}>인증</Button>
         </div>
-        <button
-          onClick={handleAddItem}
-          disabled={!isVerify}
-          className="bg-gray-700 text-white p-2 rounded w-full disabled:opacity-30"
-        >
+        <Button onClick={handleAddItem} mode={"normal"} disableCondition={!isVerify}>
           추가
-        </button>
+        </Button>
       </div>
     </div>
   );

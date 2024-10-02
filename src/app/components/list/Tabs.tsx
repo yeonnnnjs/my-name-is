@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter, usePathname } from "next/navigation";
+import Button from "@/app/components/Button";
 
 const Tabs = () => {
   const router = useRouter();
@@ -15,22 +16,12 @@ const Tabs = () => {
 
     return (
         <div className="flex justify-center space-x-4 mb-6 w-full">
-            <button
-                className={`w-full px-4 py-2 ${
-                    activeTab === 0 ? 'bg-gray-700 text-white' : 'bg-gray-300'
-                } rounded`}
-                onClick={() => handleChangeTab(0)}
-            >
-                이름 목록
-            </button>
-            <button
-                className={`w-full px-4 py-2 ${
-                    activeTab === 1 ? 'bg-gray-700 text-white' : 'bg-gray-300'
-                } rounded`}
-                onClick={() => handleChangeTab(1)}
-            >
-                이름 생성기
-            </button>
+          <Button onClick={() => handleChangeTab(0)} mode={activeTab === 0 ? "enableTab" : "disableTab"}>
+            이름 목록
+          </Button>
+          <Button onClick={() => handleChangeTab(1)} mode={activeTab === 1 ? "enableTab" : "disableTab"}>
+            이름 생성기
+          </Button>
         </div>
     );
 };
