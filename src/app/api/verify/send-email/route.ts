@@ -37,12 +37,13 @@ export const POST = async (req: NextRequest) => {
     await transporter.sendMail({
       from: process.env.GMAIL_USER,
       to: email,
-      subject: "[my-name-is] 이메일 인증",
+      subject: "[my-generator-is] 이메일 인증",
       text: `히히 인증 코드 발사~! => ${code}`,
     });
 
     return NextResponse.json(true);
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ error: 'Failed to insert data' }, { status: 500 });
   }
 }

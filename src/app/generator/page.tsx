@@ -1,12 +1,19 @@
 import Tabs from "@/app/components/list/Tabs";
+import Image from "next/image";
+import NameGenerator from "@/app/components/generator/NameGenerator";
 
 const Home = async () => {
 
   return (
-      <main className="container mx-auto p-6 min-h-screen max-w-[840px]">
-        <Tabs/>
-      </main>
+    <main className="flex flex-col container mx-auto p-6 min-h-screen max-w-[840px]">
+      <Tabs/>
+      <div className={"flex flex-col gap-10 w-full flex-grow justify-center"}>
+        <Image src={"/images/kinderjoy.png"} alt={"칼든강도"} width={160} height={160} className={"self-center"} />
+        <NameGenerator />
+      </div>
+    </main>
   );
 }
 
 export default Home;
+

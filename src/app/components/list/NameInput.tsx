@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import EmailVerificationModal from "@/app/components/list/EmailVerificationModal";
+import Button from "@/app/components/Button";
 
 const NameInput = () => {
   const [inputName, setInputName] = useState('');
@@ -39,13 +40,9 @@ const NameInput = () => {
                 onChange={handleChange}
                 className="flex-grow px-4 py-2 border rounded-l-md"
             />
-            <button
-                onClick={handleOpenModal}
-                disabled={inputName.length === 0}
-                className="bg-gray-700 text-white px-6 py-2 rounded-r-md hover:bg-gray-500 disabled:opacity-30"
-            >
-                추가
-            </button>
+          <Button onClick={handleOpenModal} disableCondition={inputName.length === 0} mode={"input"}>
+            추가
+          </Button>
         </div>
         <EmailVerificationModal isOpen={isModalOpen} onClose={handleCloseModal} onAddItem={handleAddNames} />
       </>
