@@ -1,16 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
 import clientPromise from '@/app/lib/db';
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
   try {
     const client = await clientPromise;
     const db = client.db('v1');
-    const items = await db.collection('names').find({}).toArray();
+    const collection = db.collection('names');
+
+    const searchParams = req.nextUrl.searchParams;
+
+    const searchBy = searchParams.get('searchBy');
+    const searchValue = searchParams.get('searchValue');
+
+    const sortBy = searchParams.get('sortBy');
+    const sortOrder = searchParams.get('sortOrder');
+
+    const query = {};
+    if (searchBy && searchValue) {
+      query[searchBy] = { $regex: searchValue, $options: 'i' };
+    }
+
+    const sort = {};
+    if (sortBy) {
+      sort[sortBy] = sortOrder === 'desc' ? -1 : 1;
+    }
+
+    const items = await collection.find(query).sort(sort).toArray();
+
     return NextResponse.json(items);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
   }
-}
+};
 
 export const POST = async (req: NextRequest) => {
   try {

@@ -6,7 +6,7 @@ const config: {
       colors: { background: string; foreground: string };
       animation: { rainbow: string }
     };
-    screens: { xl: string; "2xl": string; md: string; sm: string; xs: string; lg: string }
+    screens: { filter: string; xl: string; "2xl": string; md: string; sm: string; xs: string; lg: string }
   };
   content: string[]
 } = {
@@ -19,6 +19,7 @@ const config: {
     screens: {
       xs: '340px',
       sm: '480px',
+      filter: '520px',
       md: '640px',
       lg: '768px',
       xl: '1280px',
