@@ -3,14 +3,13 @@ import NameInput from "@/app/components/list/NameInput";
 import NameList from "@/app/components/list/NameList";
 
 const Home = async () => {
-
   return (
-      <main className="container mx-auto p-6 min-h-screen max-w-[840px]">
-        <Tabs/>
-        <NameInput />
-        <NameList />
-      </main>
+    <main className="container mx-auto min-h-screen max-w-[840px] p-6">
+      <Tabs />
+      <NameInput />
+      <NameList />
+    </main>
   );
-}
+};
 
 export default Home;

@@ -1,12 +1,13 @@
+import { ReactNode } from "react";
+
 interface Props {
   onClick: () => void;
   disableCondition?: boolean;
-  children: JSX.Element;
-  mode: "input" | "normal" | "rainbow" | "enableTab" | "disableTab" | "filter"
+  children: ReactNode;
+  mode: "input" | "normal" | "rainbow" | "enableTab" | "disableTab" | "filter";
 }
 
 const Button = ({ onClick, disableCondition, children, mode }: Props) => {
-
   const style = () => {
     switch (mode) {
       case "input":
@@ -21,19 +22,14 @@ const Button = ({ onClick, disableCondition, children, mode }: Props) => {
         return "w-full px-4 py-2 rounded bg-gray-300 text-white";
       case "filter":
         return "aspect-square px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-500 disabled:opacity-20 disabled:hover:bg-gray-700";
-
     }
-  }
+  };
 
   return (
-    <button
-      onClick={onClick}
-      disabled={disableCondition}
-      className={style()}
-    >
+    <button onClick={onClick} disabled={disableCondition} className={style()}>
       {children}
     </button>
   );
-}
+};
 
 export default Button;

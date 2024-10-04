@@ -25,3 +25,14 @@ body {
     text-wrap: balance;
   }
 }
+
+/* 웹킷 기반 브라우저 (Chrome, Safari 등) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE and Edge */
+}
