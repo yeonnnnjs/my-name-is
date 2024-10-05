@@ -11,6 +11,7 @@ const NameList = () => {
   const [names, setNames] = useState<Names[]>([]);
   const [searchBy, setSearchBy] = useState("name");
   const [searchValue, setSearchValue] = useState("");
+  const [renderSearch, setRenderSearch] = useState("");
   const [sortBy, setSortBy] = useState("name");
   const [sortOrder, setSortOrder] = useState("asc");
   const [page, setPage] = useState(1);
@@ -34,6 +35,10 @@ const NameList = () => {
 
   const fetchNames = async () => {
     setIsLoading(true);
+    setPage(1);
+    setHasMore(true);
+    setNames([]);
+
     const res = await fetch(`/api/names?${searchParams}`, {
       method: "GET",
     });
@@ -53,6 +58,7 @@ const NameList = () => {
   const handleResetFilter = () => {
     setSearchBy("name");
     setSearchValue("");
+    setRenderSearch("");
     setSortBy("name");
     setSortOrder("asc");
   };
@@ -65,25 +71,20 @@ const NameList = () => {
     setSearchBy(e.target.value);
   };
 
+  const handleClickSearch = () => {
+    setSearchValue(renderSearch);
+  };
+
   const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-    setPage(1);
-    setNames([]);
-    setHasMore(true);
+    setRenderSearch(e.target.value);
   };
 
   const handleChangeSortBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(e.target.value);
-    setPage(1);
-    setNames([]);
-    setHasMore(true);
   };
 
   const handleChangeSortOrder = () => {
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-    setPage(1);
-    setNames([]);
-    setHasMore(true);
   };
 
   return (
@@ -97,11 +98,14 @@ const NameList = () => {
           />
           <input
             type="text"
-            value={searchValue}
+            value={renderSearch}
             onChange={handleChangeSearchValue}
             placeholder="검색어 입력"
-            className="w-[280px] rounded border p-2 filter:w-auto"
+            className="w-full rounded border p-2"
           />
+          <Button onClick={handleClickSearch} mode={"normalPadding"}>
+            검색
+          </Button>
         </div>
         <div className={"flex h-[42px] gap-2"}>
           <Select
@@ -109,7 +113,7 @@ const NameList = () => {
             onChange={handleChangeSortBy}
             mode={"sortBy"}
           />
-          <Button onClick={handleChangeSortOrder} mode={"filter"}>
+          <Button onClick={handleChangeSortOrder} mode={"square"}>
             {sortOrder === "asc" ? <>↑</> : <>↓</>}
           </Button>
         </div>
