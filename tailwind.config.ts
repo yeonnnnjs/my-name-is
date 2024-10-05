@@ -2,13 +2,26 @@ const config: {
   plugins: never[];
   theme: {
     extend: {
-      keyframes: { rainbow: { "100%": { backgroundPosition: string }; "0%": { backgroundPosition: string } } };
+      keyframes: {
+        rainbow: {
+          "100%": { backgroundPosition: string };
+          "0%": { backgroundPosition: string };
+        };
+      };
       colors: { background: string; foreground: string };
-      animation: { rainbow: string }
+      animation: { rainbow: string };
     };
-    screens: { filter: string; xl: string; "2xl": string; md: string; sm: string; xs: string; lg: string }
+    screens: {
+      filter: string;
+      xl: string;
+      "2xl": string;
+      md: string;
+      sm: string;
+      xs: string;
+      lg: string;
+    };
   };
-  content: string[]
+  content: string[];
 } = {
   content: [
     "./src/generator/**/*.{js,ts,jsx,tsx,mdx}",
@@ -17,13 +30,13 @@ const config: {
   ],
   theme: {
     screens: {
-      xs: '340px',
-      sm: '480px',
-      filter: '520px',
-      md: '640px',
-      lg: '768px',
-      xl: '1280px',
-      '2xl': '1536px'
+      xs: "340px",
+      sm: "480px",
+      filter: "530px",
+      md: "640px",
+      lg: "768px",
+      xl: "1280px",
+      "2xl": "1536px",
     },
     extend: {
       colors: {
@@ -31,12 +44,12 @@ const config: {
         foreground: "var(--foreground)",
       },
       animation: {
-        rainbow: 'rainbow 2s linear infinite',
+        rainbow: "rainbow 2s linear infinite",
       },
       keyframes: {
         rainbow: {
-          '0%': { backgroundPosition: '0% 50%' },
-          '100%': { backgroundPosition: '100% 50%' },
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "100% 50%" },
         },
       },
     },
