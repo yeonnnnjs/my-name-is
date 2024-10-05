@@ -17,6 +17,20 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "카더가든 이름 생성기",
   description: "내 이름은 카더가든",
+  openGraph: {
+    title: "키더가든 이름 생성기",
+    description: "내 이름은 카더가든",
+    url: "https://my-name.kro.kr",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 400,
+        height: 300,
+        alt: "",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({
