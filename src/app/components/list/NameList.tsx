@@ -125,25 +125,23 @@ const NameList = () => {
       </div>
       {names.length > 0 ? (
         <div className={"flex flex-col gap-4"}>
-          {names.length > 0 && (
-            <div className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
-              {names.map(
-                (item, index) =>
-                  item.name && (
-                    <div
-                      key={index}
-                      className="flex aspect-square flex-col items-center justify-around overflow-hidden rounded bg-gray-100 p-4 text-center shadow"
-                    >
-                      <p></p>
-                      <p className="break-all text-black">{item.name}</p>
-                      <p className="break-all text-sm text-gray-600">
-                        {item.email.split("@")[0]}
-                      </p>
-                    </div>
-                  ),
-              )}
-            </div>
-          )}
+          <div className="grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+            {names.map(
+              (item, index) =>
+                item.name && (
+                  <div
+                    key={index}
+                    className="flex aspect-square flex-col items-center justify-around overflow-hidden rounded bg-gray-100 p-4 text-center shadow"
+                  >
+                    <p></p>
+                    <p className="break-all text-black">{item.name}</p>
+                    <p className="break-all text-sm text-gray-600">
+                      {item.email.split("@")[0]}
+                    </p>
+                  </div>
+                ),
+            )}
+          </div>
           {hasMore && (
             <Button onClick={handleGetMorePage} mode={"normal"}>
               더보기
@@ -159,14 +157,12 @@ const NameList = () => {
               className="h-auto w-full max-w-[200px]"
             />
           ) : (
-            <>
-              <div className="flex h-full flex-col text-center">
-                <h1 className={"mb-4 text-2xl"}>해당하는 데이터가 없어요!</h1>
-                <Button onClick={handleResetFilter} mode={"normal"}>
-                  돌아가기
-                </Button>
-              </div>
-            </>
+            <div className="flex h-full flex-col text-center">
+              <h1 className={"mb-4 text-2xl"}>해당하는 데이터가 없어요!</h1>
+              <Button onClick={handleResetFilter} mode={"normal"}>
+                돌아가기
+              </Button>
+            </div>
           )}
         </div>
       )}
