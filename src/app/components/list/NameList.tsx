@@ -22,7 +22,6 @@ const NameList = () => {
     const params: Record<string, string> = {
       sortBy,
       sortOrder,
-      page: String(page),
     };
 
     if (searchValue) {
@@ -31,15 +30,12 @@ const NameList = () => {
     }
 
     return new URLSearchParams(params).toString();
-  }, [page, searchBy, searchValue, sortBy, sortOrder]);
+  }, [searchBy, searchValue, sortBy, sortOrder]);
 
-  const fetchNames = async () => {
+  const fetchNames = async (currentPage: number) => {
     setIsLoading(true);
-    setPage(1);
-    setHasMore(true);
-    setNames([]);
 
-    const res = await fetch(`/api/names?${searchParams}`, {
+    const res = await fetch(`/api/names?${searchParams}&page=${currentPage}`, {
       method: "GET",
     });
     const data = await res.json();
@@ -52,8 +48,16 @@ const NameList = () => {
   };
 
   useEffect(() => {
-    fetchNames();
+    setPage(1);
+    setNames([]);
+    setHasMore(true);
+    fetchNames(1);
   }, [searchParams]);
+
+  useEffect(() => {
+    if (page === 1) return;
+    fetchNames(page);
+  }, [page]);
 
   const handleResetFilter = () => {
     setSearchBy("name");
@@ -64,7 +68,8 @@ const NameList = () => {
   };
 
   const handleGetMorePage = () => {
-    setPage(page + 1);
+    // setPage(page + 1);
+    setPage((prev) => prev + 1);
   };
 
   const handleChangeSearchBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
