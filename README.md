@@ -30,6 +30,11 @@
 ## 링크
 [카더가든 이름 생성기](https://my-name.kro.kr)
 
+## Contributor
+| 이름          | 기여 내용        |
+|---------------|-----------------|
+| [Dongha Kang](https://github.com/KNamuuu) | [NameList 컴포넌트 page dependency 개선](https://github.com/yeonnnnjs/my-name-is/pull/6) |
+
 ## 참고
 [킹갓 Next Docs](https://nextjs.org/docs)
 
